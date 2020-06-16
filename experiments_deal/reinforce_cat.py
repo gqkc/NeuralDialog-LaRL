@@ -32,11 +32,11 @@ def main():
         os.mkdir(exp_dir)
 
     rl_config = Pack(
-        train_path = '../data/negotiate/train.txt',
-        val_path = '../data/negotiate/val.txt',
-        test_path = '../data/negotiate/test.txt',
-        selfplay_path = '../data/negotiate/selfplay.txt',
-        selfplay_eval_path = '../data/negotiate/selfplay_eval.txt',
+        train_path = 'data/negotiate/train.txt',
+        val_path = 'data/negotiate/val.txt',
+        test_path = 'data/negotiate/test.txt',
+        selfplay_path = 'data/negotiate/selfplay.txt',
+        selfplay_eval_path = 'data/negotiate/selfplay_eval.txt',
         sim_config_path=os.path.join('config_log_model', simulator_folder, 'config.json'),
         sim_model_path=os.path.join('config_log_model', simulator_folder, '{}-model'.format(sim_epoch_id)),
         sv_config_path = os.path.join('config_log_model', folder, 'config.json'), 
@@ -45,8 +45,8 @@ def main():
         rl_model_path = os.path.join(exp_dir, 'rl_model'),
         ppl_best_model_path = os.path.join(exp_dir, 'ppl_best_model'),
         reward_best_model_path = os.path.join(exp_dir, 'reward_best_model'),
-        judger_model_path = os.path.join('../FB', 'sv_model.th'),
-        judger_config_path = os.path.join('../FB', 'judger_config.json'),
+        judger_model_path = os.path.join('FB', 'sv_model.th'),
+        judger_config_path = os.path.join('FB', 'judger_config.json'),
         record_path = exp_dir,
         record_freq = 100,
         use_gpu = env == 'gpu', 
@@ -60,7 +60,7 @@ def main():
         nesterov = True,
         gamma = 0.95,
         rl_clip = 1.0,
-        ref_text = '../data/negotiate/train.txt',
+        ref_text = 'data/negotiate/train.txt',
         domain = 'object_division', 
         max_nego_turn = 50, 
         random_seed = 0,
@@ -105,7 +105,7 @@ def main():
     # load FB judger model
     judger_config = Pack(json.load(open(rl_config.judger_config_path)))
     judger_config['cuda'] = rl_config.use_gpu
-    judger_config['data'] = '../data/negotiate'
+    judger_config['data'] = 'data/negotiate'
     judger_device_id = FB_use_cuda(judger_config.cuda)
     judger_word_corpus = FbWordCorpus(judger_config.data, freq_cutoff=judger_config.unk_threshold, verbose=True)
     judger_model = FbDialogModel(judger_word_corpus.word_dict, judger_word_corpus.item_dict,
