@@ -25,9 +25,9 @@ domain_info = domain.get_domain(domain_name)
 
 config = Pack(
     random_seed = 10,
-    train_path = '../data/negotiate/train.txt', 
-    val_path = '../data/negotiate/val.txt', 
-    test_path = '../data/negotiate/test.txt', 
+    train_path = 'data/negotiate/train.txt',
+    val_path = 'data/negotiate/val.txt',
+    test_path = 'data/negotiate/test.txt',
     last_n_model = 4, 
     max_utt_len = 20,
     backward_size = 14, 
